@@ -17,49 +17,29 @@ package com.bzb.challenge
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.bzb.challenge.ui.theme.MyTheme
+import com.bzb.challenge.theme.DogAdoptionTheme
 
 class MainActivity : AppCompatActivity() {
+
+    private val navigationViewModel by viewModels<NavigationViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         setContent {
-            MyTheme {
-                MyApp()
-            }
+            DogAdoptionApp(navigationViewModel)
         }
     }
-}
 
-// Start building your app here!
-@Composable
-fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!", fontSize = 20.sp, modifier = Modifier.padding(20.dp))
-    }
-}
-
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
-
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
+    override fun onBackPressed() {
+        if (!navigationViewModel.backToHome()) {
+            super.onBackPressed()
+        }
     }
 }
