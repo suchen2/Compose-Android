@@ -95,12 +95,12 @@ fun ActionView() {
 
 
 @Composable
-fun CircleHeadView(size: Dp, click: () -> Unit) {
+fun CircleHeadView(size: Dp, modifier: Modifier = Modifier, click: () -> Unit) {
     Image(
         contentScale = ContentScale.Crop,
         painter = painterResource(R.drawable.samo),
         contentDescription = stringResource(R.string.action_slide),
-        modifier = Modifier
+        modifier = modifier
             .size(size)
             .clip(CircleShape)
             .clickable {

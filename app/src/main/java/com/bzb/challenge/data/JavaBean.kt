@@ -11,5 +11,7 @@ import androidx.annotation.DrawableRes
 data class DogInfo(
     val name: String,
     val desc: String,
-    @DrawableRes val image: Int
+    @DrawableRes val image: Int,
+    val imgUrl: String? = null,
+    val link: String? = null
 )

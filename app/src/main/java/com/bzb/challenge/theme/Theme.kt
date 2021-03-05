@@ -29,7 +29,7 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = purple500,
+    primary = purple500,  // 主题色,actionBar
     primaryVariant = purple700,
     secondary = teal200
 

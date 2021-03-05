@@ -17,10 +17,13 @@ package com.bzb.challenge.theme
 
 import androidx.compose.ui.graphics.Color
 
-val purple200 = Color(0xFFBB86FC)
-val purple500 = Color(0xFF6200EE)
-val purple700 = Color(0xFF3700B3)
+// actionBar颜色
+val purple200 = Color(0xFF73B49A)
+val purple500 = Color(0xFFF39F22)
+
+val purple700 = Color(0xFFAC8AF7)
 val teal200 = Color(0xFF03DAC5)
 
-val toolbarBg = Color(0xFFFFFFFF)
+val bg_slide_page = Color(0xFFEBEBEB)
+val bg_item_home = Color(0xFFDFDDDD)
 val textWhite = Color(0xFFFFFF)

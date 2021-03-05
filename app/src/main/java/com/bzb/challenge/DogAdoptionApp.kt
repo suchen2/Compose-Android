@@ -17,7 +17,7 @@ import com.bzb.challenge.ui.tab.HomePage
 
 @Composable
 fun DogAdoptionApp(navigationViewModel: NavigationViewModel) {
-    DogAdoptionTheme {
+    DogAdoptionTheme(false) {
         AppContent(navigationViewModel)
     }
 }

@@ -1,7 +1,14 @@
 package com.bzb.challenge.ui.slide
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bzb.challenge.ui.common.CircleHeadView
 
 /**
@@ -11,8 +18,11 @@ import com.bzb.challenge.ui.common.CircleHeadView
  */
 
 @Composable
-fun slideHeadView(click: @Composable () -> Unit) {
-    CircleHeadView(60.dp) { click }
+fun slideHeadView(click: () -> Unit) {
+    Row(Modifier.padding(top = 25.dp)) {
+        CircleHeadView(65.dp, Modifier.padding(start = 20.dp), click)
+        Text("Kotlin", Modifier.align(Alignment.CenterVertically).padding(start = 10.dp), fontSize = 22.sp, fontWeight = FontWeight.Bold)
+    }
 }
 
 
