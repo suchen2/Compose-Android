@@ -24,6 +24,6 @@ val purple500 = Color(0xFFF39F22)
 val purple700 = Color(0xFFAC8AF7)
 val teal200 = Color(0xFF03DAC5)
 
-val bg_slide_page = Color(0xFFEBEBEB)
+val bg_slide_page = Color(0xFFB48949)
 val bg_item_home = Color(0xFFDFDDDD)
 val textWhite = Color(0xFFFFFF)
