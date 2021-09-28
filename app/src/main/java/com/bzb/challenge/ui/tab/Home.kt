@@ -9,30 +9,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.bzb.challenge.R
 import com.bzb.challenge.data.DogInfo
 import com.bzb.challenge.theme.bg_item_home
-import com.bzb.challenge.ui.common.AppBarView
-import com.bzb.challenge.ui.common.ActionView
-import com.bzb.challenge.ui.common.CircleHeadView
-import com.bzb.challenge.ui.common.TitleView
-import com.bzb.challenge.ui.slide.slidePageView
+import com.bzb.challenge.ui.common.*
+import com.bzb.challenge.ui.slide.SlidePageView
 import com.bzb.challenge.util.loadImg
 import kotlinx.coroutines.launch
 
@@ -58,22 +50,28 @@ fun HomePage(scaffoldState: ScaffoldState) {
             )
         },
         drawerContent = {
-            slidePageView(scaffoldState)
+            SlidePageView(scaffoldState)
         },
     ) {
-        Column(Modifier.fillMaxSize()) {
+        Box(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
 //            CustomTitleView()
 
-            val listData = mutableStateListOf<DogInfo>()
+                val listData = mutableStateListOf<DogInfo>()
 
-            makeData(listData)
+                makeData(listData)
 
-            recommendListView(listData) {
-                CustomImageView(modifier = Modifier.size(450.dp), imgRes = R.drawable.dog_10, imgUrl = "")
+                RecommendListView(listData) {
+                    CustomImageView(
+                        modifier = Modifier.size(450.dp, 250.dp),
+                        imgRes = R.drawable.dog_10
+                    )
+                }
             }
         }
     }
 }
+
 
 // 制造list数据
 fun makeData(listData: SnapshotStateList<DogInfo>) {
@@ -146,7 +144,7 @@ fun makeData(listData: SnapshotStateList<DogInfo>) {
 // https://developer.android.com/jetpack/compose/lists
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun recommendListView(listData: List<DogInfo>, modifier: Modifier = Modifier, header: @Composable LazyItemScope.() -> Unit) {
+fun RecommendListView(listData: List<DogInfo>, modifier: Modifier = Modifier, header: @Composable LazyItemScope.() -> Unit) {
     LazyColumn(/*contentPadding = PaddingValues(5.dp),*/ modifier = modifier) {
 
         // header
@@ -165,7 +163,7 @@ fun recommendListView(listData: List<DogInfo>, modifier: Modifier = Modifier, he
                         modifier = imageModifier
                     )
                 } else {
-                    CustomImageView(info.imgUrl, imageModifier)
+                    CustomImageView(imageModifier, info.imgUrl)
                 }
 
 
@@ -198,7 +196,7 @@ fun PhotoGrid(listData: List<DogInfo>) {
             if (info.imgUrl.isNullOrEmpty()) {
                 Image(painterResource(id = info.image), contentDescription = "")
             } else {
-                CustomImageView(info.imgUrl)
+                CustomImageView(imgUrl = info.imgUrl)
             }
         }
     }
@@ -225,13 +223,13 @@ fun CustomTitleView() {
 }
 
 @Composable
-fun CustomImageView(imgUrl: String, modifier: Modifier = Modifier, @DrawableRes imgRes: Int = 0) {
+fun CustomImageView(modifier: Modifier = Modifier, imgUrl: String? = null, @DrawableRes imgRes: Int = 0) {
     AndroidView(
         modifier = modifier,
         factory = { context ->
             ImageView(context).apply {
                 scaleType = ImageView.ScaleType.CENTER_CROP
-                if (imgUrl.isEmpty()) loadImg(imgRes) else loadImg(imgUrl)
+                if (imgUrl.isNullOrEmpty()) loadImg(imgRes) else loadImg(imgUrl)
             }
         },
         update = { /*v -> v.loadImg(imgUrl)*/ }

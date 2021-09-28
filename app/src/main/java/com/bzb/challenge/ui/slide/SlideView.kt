@@ -1,5 +1,6 @@
 package com.bzb.challenge.ui.slide
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -18,7 +19,7 @@ import com.bzb.challenge.ui.common.CircleHeadView
  */
 
 @Composable
-fun slideHeadView(click: () -> Unit) {
+fun SlideHeadView(click: () -> Unit) {
     Row(Modifier.padding(top = 25.dp)) {
         CircleHeadView(65.dp, Modifier.padding(start = 20.dp), click)
         Text("Kotlin", Modifier.align(Alignment.CenterVertically).padding(start = 10.dp), fontSize = 22.sp, fontWeight = FontWeight.Bold)
@@ -27,11 +28,15 @@ fun slideHeadView(click: () -> Unit) {
 
 
 @Composable
-fun slideBodyView() {
+fun SlideBodyView() {
+    Column{
+        Text("Profile")
 
+        Text("Second")
+    }
 }
 
 @Composable
-fun slideFootView() {
+fun SlideFootView() {
 
 }
