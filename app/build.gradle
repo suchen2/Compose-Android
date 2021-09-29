@@ -24,6 +24,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile rootProject.file('app/release.jks')
+            storePassword 'compose'
+            keyAlias 'compose'
+            keyPassword 'compose'
+        }
     }
 
     buildTypes {
@@ -31,7 +37,8 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
