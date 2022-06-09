@@ -1,5 +1,6 @@
 package com.bzb.challenge.navigation
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 /**
@@ -13,24 +14,24 @@ class NavigationViewModel: ViewModel(){
     /**
      * 首页tab
      */
-    var currentTab: TabPage = TabPage.HomePage
-        private set
-
+    private var currentTab = mutableStateOf<TabPage>(TabPage.HomePage)
+    fun getCurrentTab(): TabPage = currentTab.value
 
 
     /**
      * 导航到 xx Tab下
      */
     fun navigationTo(tabPage: TabPage) {
-        currentTab = tabPage
+        currentTab.value = tabPage
     }
 
     /**
      * 返回到首页tab
+     * @return 返回后是否已经到达首页
      */
     fun backToHome(): Boolean {
-        val isHome = currentTab == TabPage.HomePage
-        currentTab = TabPage.HomePage
+        val isHome = currentTab.value == TabPage.HomePage
+        currentTab.value = TabPage.HomePage
         return isHome
     }
 

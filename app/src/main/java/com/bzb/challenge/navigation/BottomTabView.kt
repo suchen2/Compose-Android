@@ -45,12 +45,12 @@ fun DogBottomTabView(
 
         val tabSize = tabList.size
         tabList.forEachIndexed { index, item ->
-            item.selected.value = (viewModel.currentTab == item.tabPage)
+            item.selected.value = (viewModel.getCurrentTab() == item.tabPage)
             item.index = index
 
             DogItemView(item, tabSize) {
                 // item点击
-                if (item.tabPage != viewModel.currentTab) {
+                if (item.tabPage != viewModel.getCurrentTab()) {
                     viewModel.navigationTo(it.tabPage)
                     tabList.forEachIndexed { index, info ->
                         info.selected.value = it.index == index

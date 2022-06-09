@@ -4,7 +4,6 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -18,6 +17,7 @@ import com.bzb.challenge.ui.common.AppBarView
 import com.bzb.challenge.ui.common.CircleHeadView
 import com.bzb.challenge.ui.common.TitleView
 import com.bzb.challenge.ui.slide.SlidePageView
+import com.bzb.challenge.ui.tab.CatPage
 import com.bzb.challenge.ui.tab.HomePage
 import kotlinx.coroutines.launch
 
@@ -64,19 +64,20 @@ fun AppContent(navigationViewModel: NavigationViewModel) {
             val tabList = mutableListOf<DogBottomTabInfo>()
             tabList.add(DogBottomTabInfo("Dog", R.mipmap.cat, R.mipmap.cat, TabPage.HomePage))
             tabList.add(DogBottomTabInfo("Cat", R.mipmap.cat, R.mipmap.cat, TabPage.CatPage))
-            tabList.add(DogBottomTabInfo("Fish", R.mipmap.cat, R.mipmap.cat, TabPage.CatPage))
 
-            val currentTab = remember { TabPage.HomePage }
             DogBottomTabView(navigationViewModel, tabList)
 
         }
     ) {
-        Crossfade(navigationViewModel.currentTab) {
+        Crossfade(navigationViewModel.getCurrentTab()) {
             Surface {
                 Column {
                     when (it) {
                         is TabPage.HomePage -> {
                             HomePage()
+                        }
+                        is TabPage.CatPage -> {
+                            CatPage()
                         }
                     }
                 }
