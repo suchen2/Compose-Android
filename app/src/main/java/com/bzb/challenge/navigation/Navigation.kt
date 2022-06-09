@@ -1,4 +1,4 @@
-package com.bzb.challenge
+package com.bzb.challenge.navigation
 
 /**
  * @author bzb
@@ -7,9 +7,10 @@ package com.bzb.challenge
  */
 
 enum class TabName {
-    PAGE_HOME
+    PAGE_HOME, PAGE_CAT
 }
 
 sealed class TabPage(tabName: TabName) {
+    object CatPage: TabPage(TabName.PAGE_CAT)
     object HomePage: TabPage(TabName.PAGE_HOME)
 }

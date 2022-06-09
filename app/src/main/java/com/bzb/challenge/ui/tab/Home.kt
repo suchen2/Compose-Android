@@ -14,7 +14,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,10 +23,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.bzb.challenge.R
 import com.bzb.challenge.data.DogInfo
 import com.bzb.challenge.theme.bg_item_home
-import com.bzb.challenge.ui.common.*
-import com.bzb.challenge.ui.slide.SlidePageView
 import com.bzb.challenge.util.loadImg
-import kotlinx.coroutines.launch
 
 /**
  * @author bzb
@@ -36,39 +32,21 @@ import kotlinx.coroutines.launch
  */
 
 @Composable
-fun HomePage(scaffoldState: ScaffoldState) {
-    val coroutineScope = rememberCoroutineScope()
+fun HomePage() {
 
-    Scaffold(
-        scaffoldState = scaffoldState,
-        topBar = {
-            AppBarView(
-                title = { TitleView() },
-                icon = { CircleHeadView(40.dp) {
-                    coroutineScope.launch { scaffoldState.drawerState.open() }
-                } },
-                action = { ActionView() }
-            )
-        },
-        drawerBackgroundColor = Color.Transparent,
-        drawerContent = {
-            SlidePageView(scaffoldState)
-        },
-    ) {
-        Box(Modifier.fillMaxSize()) {
-            Column(Modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize()) {
 //            CustomTitleView()
 
-                val listData = mutableStateListOf<DogInfo>()
+            val listData = mutableStateListOf<DogInfo>()
 
-                makeData(listData)
+            makeData(listData)
 
-                RecommendListView(listData) {
-                    CustomImageView(
-                        modifier = Modifier.size(450.dp, 250.dp),
-                        imgRes = R.drawable.dog_10
-                    )
-                }
+            RecommendListView(listData) {
+                CustomImageView(
+                    modifier = Modifier.size(450.dp, 250.dp),
+                    imgRes = R.drawable.dog_10
+                )
             }
         }
     }

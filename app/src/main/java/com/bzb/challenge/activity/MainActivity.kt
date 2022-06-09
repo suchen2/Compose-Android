@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bzb.challenge
+package com.bzb.challenge.activity
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.bzb.challenge.theme.DogAdoptionTheme
+import com.bzb.challenge.DogAdoptionApp
+import com.bzb.challenge.navigation.NavigationViewModel
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.bzb.challenge
+package com.bzb.challenge.navigation
 
 import androidx.lifecycle.ViewModel
 
