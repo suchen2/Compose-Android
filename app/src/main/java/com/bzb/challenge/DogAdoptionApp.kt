@@ -27,6 +27,16 @@ import kotlinx.coroutines.launch
  * @description Application
  */
 
+/**
+ * 底部导航栏
+ */
+val mTabList: List<DogBottomTabInfo> by lazy {
+    mutableListOf<DogBottomTabInfo>().apply {
+        add(DogBottomTabInfo("Dog", R.drawable.ic_tab_dog, R.drawable.ic_tab_dog_s, TabPage.HomePage))
+        add(DogBottomTabInfo("Cat", R.drawable.ic_tab_cat, R.drawable.ic_tab_cat_s, TabPage.CatPage))
+    }
+}
+
 @Composable
 fun DogAdoptionApp(navigationViewModel: NavigationViewModel) {
     DogAdoptionTheme(false) {
@@ -60,13 +70,7 @@ fun AppContent(navigationViewModel: NavigationViewModel) {
         },
 
         bottomBar =  {
-
-            val tabList = mutableListOf<DogBottomTabInfo>()
-            tabList.add(DogBottomTabInfo("Dog", R.mipmap.cat, R.mipmap.cat, TabPage.HomePage))
-            tabList.add(DogBottomTabInfo("Cat", R.mipmap.cat, R.mipmap.cat, TabPage.CatPage))
-
-            DogBottomTabView(navigationViewModel, tabList)
-
+            DogBottomTabView(navigationViewModel, mTabList)
         }
     ) {
         Crossfade(navigationViewModel.getCurrentTab()) {

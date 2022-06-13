@@ -26,4 +26,4 @@ val teal200 = Color(0xFF03DAC5)
 
 val bg_slide_page = Color(0xFFB48949)
 val bg_item_home = Color(0xFFDFDDDD)
-val textWhite = Color(0xFFFFFF)
+val textWhite = Color(0xFFFFFFFF)
